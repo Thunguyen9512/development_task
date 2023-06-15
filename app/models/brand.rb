@@ -12,4 +12,9 @@
 #  merchant_id :integer
 #
 class Brand < ApplicationRecord
+  belongs_to :merchant
+  has_many :products
+
+  enum redemption: { instore: 0, online: 1 }
+  validates :name, uniqueness: true, presence: true
 end

@@ -12,4 +12,10 @@
 #  client_id  :integer
 #
 class Application < ApplicationRecord
+  belongs_to :client
+  has_many :transactions
+
+  validates :uid, presence: true, uniqueness: true
+  validates :secret, presence: true
+  validates :name, presence: true, uniqueness: true
 end

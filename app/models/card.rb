@@ -11,4 +11,11 @@
 #  product_id        :integer
 #
 class Card < ApplicationRecord
+  belongs_to :product
+  has_many :transactions
+
+  validates :amount, presence: true
+  validates :activation_number, presence: true
+
+  enum status: { available: 0, issued: 1 }
 end

@@ -11,4 +11,9 @@
 #  brand_id   :integer
 #
 class Product < ApplicationRecord
+  belongs_to :brand
+  has_many :cards
+
+  validates :name, presence: true
+  validates :amount, presence: true
 end

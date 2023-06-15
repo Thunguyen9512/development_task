@@ -9,4 +9,8 @@
 #  updated_at :datetime         not null
 #
 class Country < ApplicationRecord
+  has_many :clients
+  has_many :merchants
+  validates :name, :currency, presence: true
+  validates :name, :currency, uniqueness: true
 end
