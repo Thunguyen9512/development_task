@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     resources :products, only: %i[index show] do
 
     end
+
+    resources :cards, only: %i[show] do
+
+    end
   end
 end
