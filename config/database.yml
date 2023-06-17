@@ -5,7 +5,7 @@ default: &default
 
 test:
   <<: *default
-  database: development_task_development
+  database: development_task_test
 
 development:
   <<: *default

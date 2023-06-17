@@ -14,5 +14,29 @@
 require 'rails_helper'
 
 RSpec.describe Application, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { should belong_to(:client) }
+    it { should have_many(:transactions) } 
+  end
+
+  describe 'validations' do
+    let(:application) { create(:application) }
+    it 'is invalid without uid' do
+      application.uid = nil
+      expect(application).to_not be_valid
+    end
+    it 'is invalid without secret' do
+      application.secret = nil
+      expect(application).to_not be_valid
+    end
+    it 'is invalid with same uid' do
+      new_app = build(:application, uid: application.uid)
+      expect(new_app).to_not be_valid
+    end
+    it 'is valid with valid attributes' do
+      app = build(:application, uid: Faker::Alphanumeric.alphanumeric(number: 10),
+                                secret: Faker::Internet.password)
+      expect(app).to be_valid
+    end
+  end
 end

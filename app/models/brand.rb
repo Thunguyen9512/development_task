@@ -17,4 +17,8 @@ class Brand < ApplicationRecord
 
   enum redemption: { instore: 0, online: 1 }
   validates :name, uniqueness: true, presence: true
+
+  def active_products
+    products.active
+  end
 end

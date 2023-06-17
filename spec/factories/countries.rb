@@ -10,6 +10,7 @@
 #
 FactoryBot.define do
   factory :country do
-    
+    name { Faker::Address.country }
+    currency { Faker::Currency.name }
   end
 end

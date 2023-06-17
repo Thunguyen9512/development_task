@@ -17,5 +17,4 @@ class Application < ApplicationRecord
 
   validates :uid, presence: true, uniqueness: true
   validates :secret, presence: true
-  validates :name, presence: true, uniqueness: true
 end

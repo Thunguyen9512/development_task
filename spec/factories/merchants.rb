@@ -12,6 +12,9 @@
 #
 FactoryBot.define do
   factory :merchant do
-    
+    name { Faker::Company.name }
+    active { true }
+    payout_rate { Faker::Number.between(from: 90, to: 100) }
+    country
   end
 end

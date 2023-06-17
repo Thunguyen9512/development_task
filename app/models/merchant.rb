@@ -12,6 +12,7 @@
 #
 class Merchant < ApplicationRecord
   belongs_to :country
+  has_many :brands
 
   validates :name, uniqueness: true, presence: true
 end

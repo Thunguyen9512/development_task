@@ -15,7 +15,7 @@ class Card < ApplicationRecord
   has_many :transactions
 
   validates :amount, presence: true
-  validates :activation_number, presence: true
+  validates :activation_number, presence: true, uniqueness: true
 
   enum status: { available: 0, issued: 1 }
 end

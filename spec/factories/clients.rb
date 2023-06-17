@@ -12,6 +12,8 @@
 #
 FactoryBot.define do
   factory :client do
-    
+    name { Faker::Name.name }
+    payout_rate { Faker::Number.between(from: 90, to: 100) }
+    country
   end
 end

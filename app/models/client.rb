@@ -12,7 +12,7 @@
 #
 class Client < ApplicationRecord
   belongs_to :country
-  has_many :application
+  has_many :applications
 
   validates :name, uniqueness: true, presence: true
 end

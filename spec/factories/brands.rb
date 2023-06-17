@@ -13,6 +13,8 @@
 #
 FactoryBot.define do
   factory :brand do
-    
+    name { Faker::Vehicle.manufacture }
+    redemption { 'instore' }
+    merchant
   end
 end

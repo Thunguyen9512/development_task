@@ -13,6 +13,9 @@
 #
 FactoryBot.define do
   factory :application do
-    
+    name { Faker::Name.name }
+    uid { Faker::Alphanumeric.alphanumeric(number: 10) }
+    secret { Faker::Internet.password }
+    client
   end
 end
