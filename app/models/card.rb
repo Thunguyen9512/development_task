@@ -25,6 +25,8 @@ class Card < ApplicationRecord
 
   enum status: { available: 0, issued: 1 }
 
+  # The calculation base on my understand about the business logic
+  # I'm not pretty sure about it, please correct me if it not correct
   def client_amount(app_id)
     (client_payout_rate(app_id) * amount) / 100
   end

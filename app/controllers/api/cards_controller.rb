@@ -7,11 +7,10 @@ class Api::CardsController < ApplicationController
   end
 
   def issued
-    available_card = Card.available
-                         .where(product_id: issued_params[:product_id])
-                         .first
-    return render_errors_json({ card: 'No vailable card' }, 404) unless available_card
+    product = Product.find_by(id: issued_params[:product_id])
+    return render_errors_json({ product: 'No product' }, 404) unless product
 
+    available_card = product.cards.available.first
     service = CardService.new(available_card,
                               issued_params[:reference_number],
                               current_application.id,

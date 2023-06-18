@@ -9,21 +9,23 @@ class CardService < BaseService
   end
 
   def issued_card
-    return errors.add(:card, 'Unavailable') if card.issued?
+    return errors.add(:card, 'No available card') unless card&.available?
 
-    card_transaction = Transaction.new(
-      reference_number: reference_number,
-      card_id: card.id,
-      application_id: application_id,
-      client_amount: card.client_amount(application_id),
-      merchant_amount: card.merchant_amount
-    )
+    ActiveRecord::Base.transaction do
+      card_transaction = Transaction.new(
+        reference_number: reference_number,
+        card_id: card.id,
+        application_id: application_id,
+        client_amount: card.client_amount(application_id),
+        merchant_amount: card.merchant_amount
+      )
 
-    if card_transaction.save
-      card.update(status: 'issued')
-      send_email
-    else
-      errors.add(:card, card_transaction.errors.messages)
+      if card_transaction.save
+        card.update(status: 'issued')
+        send_email
+      else
+        errors.add(:card, card_transaction.errors.messages)
+      end
     end
   end
 
