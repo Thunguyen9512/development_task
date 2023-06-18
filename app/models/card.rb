@@ -33,7 +33,6 @@ class Card < ApplicationRecord
     (merchant_payout_rate * amount) / 100
   end
 
-  
   private
   
   def client_payout_rate(application_id)
