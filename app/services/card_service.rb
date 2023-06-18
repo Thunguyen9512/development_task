@@ -1,8 +1,8 @@
 class CardService < BaseService
   attr_reader :card, :reference_number, :application_id
 
-  def initialize(card_id, reference_number, application_id)
-    @card = Card.find_by(id: card_id)
+  def initialize(card, reference_number, application_id)
+    @card = card
     @reference_number = reference_number
     @application_id = application_id
   end
@@ -14,7 +14,7 @@ class CardService < BaseService
       reference_number: reference_number,
       card_id: card.id,
       application_id: application_id,
-      client_amount: card.client_amount,
+      client_amount: card.client_amount(application_id),
       merchant_amount: card.merchant_amount
     )
 

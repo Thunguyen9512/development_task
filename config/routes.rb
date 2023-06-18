@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     end
 
     resources :cards, only: %i[show] do
-
+      collection do
+        post :issued
+      end
     end
   end
 end

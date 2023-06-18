@@ -5,12 +5,12 @@ class CardPresenter < BasePresenter
       status: status,
       amount: amount,
       updated_at: updated_at,
-      brand_id: brand_id,
       product_id: product_id,
       activation_number: activation_number
     }
   end
 
   def json_response_with_transaction
+    json_response.merge(transaction: TransactionPresenter.new(card_transaction).json_response)
   end
 end
