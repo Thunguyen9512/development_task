@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_105104) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_091434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,10 +37,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_105104) do
   create_table "cards", force: :cascade do |t|
     t.integer "status", default: 0
     t.integer "product_id"
-    t.decimal "amount", precision: 10, scale: 2
     t.string "activation_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
   end
 
   create_table "clients", force: :cascade do |t|
@@ -71,20 +72,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_105104) do
   create_table "products", force: :cascade do |t|
     t.boolean "active", default: true
     t.string "name"
-    t.decimal "amount", precision: 10, scale: 2
     t.integer "brand_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.decimal "client_amount", precision: 10, scale: 2
-    t.decimal "merchant_amount", precision: 10, scale: 2
     t.string "reference_number"
     t.integer "card_id"
     t.integer "application_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "client_amount_cents", default: 0, null: false
+    t.string "client_amount_currency", default: "USD", null: false
+    t.integer "merchant_amount_cents", default: 0, null: false
+    t.string "merchant_amount_currency", default: "USD", null: false
   end
 
 end

@@ -7,7 +7,7 @@ class ProductPresenter < BasePresenter
       created_at: created_at,
       updated_at: updated_at,
       brand_id: brand_id,
-      amount: amount
+      amount: Money.new(amount).format
     }
   end
 

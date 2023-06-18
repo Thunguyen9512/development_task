@@ -6,7 +6,7 @@
 #  active      :boolean          default(TRUE)
 #  description :text
 #  name        :string
-#  redemption  :integer          default(0)
+#  redemption  :integer          default("instore")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  merchant_id :integer

@@ -39,6 +39,7 @@ gem "rack-cors"
 gem "pagy"
 gem "simple_command"
 gem "sidekiq"
+gem "money-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

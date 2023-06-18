@@ -4,8 +4,9 @@
 #
 #  id                :bigint           not null, primary key
 #  activation_number :string
-#  amount            :decimal(10, 2)
-#  status            :integer          default(0)
+#  amount_cents      :integer          default(0), not null
+#  amount_currency   :string           default("USD"), not null
+#  status            :integer          default("available")
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  product_id        :integer
@@ -14,14 +15,14 @@ class Card < ApplicationRecord
   belongs_to :product
   has_one :card_transaction, class_name: 'Transaction'
 
-  ACTIVATION_PREFIX = 'TN204S125FG'
+  ACTIVATION_PREFIX = 'TN204S125FG'.freeze
 
-  validates :amount, presence: true
+  monetize :amount_cents
+
+  validates :amount_cents, presence: true
   validates :activation_number, uniqueness: true
 
   after_create :generate_activation_number
-
-  # scope :available, -> { left_joins(:card_transaction).where(status: 'available', transactions: { id: nil }) }
 
   enum status: { available: 0, issued: 1 }
 
@@ -34,7 +35,7 @@ class Card < ApplicationRecord
   end
 
   private
-  
+
   def client_payout_rate(application_id)
     application = Application.find_by(id: application_id)
     application&.client&.payout_rate&.to_d
@@ -48,5 +49,4 @@ class Card < ApplicationRecord
     self.activation_number = "#{ACTIVATION_PREFIX}-#{product_id}-#{id}"
     save
   end
-
 end

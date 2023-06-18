@@ -4,8 +4,9 @@
 #
 #  id                :bigint           not null, primary key
 #  activation_number :string
-#  amount            :decimal(10, 2)
-#  status            :integer          default(0)
+#  amount_cents      :integer          default(0), not null
+#  amount_currency   :string           default("USD"), not null
+#  status            :integer          default("available")
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  product_id        :integer

@@ -3,7 +3,7 @@ class CardPresenter < BasePresenter
     {
       id: id,
       status: status,
-      amount: amount,
+      amount: Money.new(amount).format,
       updated_at: updated_at,
       product_id: product_id,
       activation_number: activation_number
