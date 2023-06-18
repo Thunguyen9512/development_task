@@ -14,7 +14,7 @@
 FactoryBot.define do
   factory :product do
     name { Faker::Vehicle.model }
-    amount { Faker::Number.between(from: 10_000, to: 1_000_000) }
+    amount { Faker::Number.between(from: 10, to: 1_000) }
     brand
   end
 end

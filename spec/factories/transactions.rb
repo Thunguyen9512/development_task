@@ -16,8 +16,8 @@
 FactoryBot.define do
   factory :transaction do
     reference_number { Faker::Alphanumeric.alphanumeric(number: 10) }
-    merchant_amount { Faker::Number.between(from: 10_000, to: 1_000_000) }
-    client_amount { Faker::Number.between(from: 10_000, to: 1_000_000) }
+    merchant_amount { Faker::Number.between(from: 10, to: 1_000) }
+    client_amount { Faker::Number.between(from: 10, to: 1_000) }
     application
     card
   end

@@ -14,7 +14,7 @@
 FactoryBot.define do
   factory :card do
     status { 'available' }
-    amount { Faker::Number.between(from: 10_000, to: 1_000_000) }
+    amount { Faker::Number.between(from: 10, to: 1000) }
     activation_number { Faker::Alphanumeric.alphanumeric(number: 10) }
     product
   end
