@@ -35,4 +35,14 @@ RSpec.describe Brand, type: :model do
       expect(brand).to be_valid
     end
   end
+
+  describe 'methods' do
+    let(:brand) { create(:brand) }
+    let(:active_product) { create(:product, brand: brand, active: true) }
+    let(:inactive_product) { create(:product, brand: brand, active: false) }
+    it 'should return active products only' do
+      expect(brand.active_products).to include(active_product)
+      expect(brand.active_products).not_to include(inactive_product)
+    end
+  end
 end

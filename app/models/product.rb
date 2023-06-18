@@ -20,5 +20,4 @@ class Product < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   validates :name, presence: true
-  validates :amount_cents, presence: true
 end

@@ -17,6 +17,8 @@ RSpec.describe Product, type: :model do
   describe 'associations' do
     it { should belong_to(:brand) }
     it { should have_many(:cards) }
+    it { is_expected.to monetize(:amount) }
+
   end
 
   describe 'validations' do
@@ -26,7 +28,7 @@ RSpec.describe Product, type: :model do
       expect(product).to_not be_valid
     end
     it 'is invalid without amount' do
-      product.amount = nil
+      product.amount_cents = nil
       expect(product).to_not be_valid
     end
     it 'is valid with valid attributes' do

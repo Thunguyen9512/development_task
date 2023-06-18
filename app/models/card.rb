@@ -19,7 +19,6 @@ class Card < ApplicationRecord
 
   monetize :amount_cents
 
-  validates :amount_cents, presence: true
   validates :activation_number, uniqueness: true
 
   after_create :generate_activation_number

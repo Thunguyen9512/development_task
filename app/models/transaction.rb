@@ -20,6 +20,4 @@ class Transaction < ApplicationRecord
   monetize :merchant_amount_cents, :client_amount_cents
 
   validates :reference_number, uniqueness: true, presence: true
-  validates :merchant_amount_cents, presence: true
-  validates :client_amount_cents, presence: true
 end
